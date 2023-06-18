@@ -25,7 +25,7 @@ export function ShopCard() {
         </CardImageContainer>
         <ShopCardText>
           <TextContainer>
-            <CardLabel>T-Shirt</CardLabel>
+            <CardLabel>Stupid People T-Shirt</CardLabel>
             <CardPrice>$ 25.00</CardPrice>
           </TextContainer>
           <ButtonsContainer>

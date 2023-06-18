@@ -19,7 +19,6 @@ export const ShopCardContainer = styled('div', {
 export const InfoContainer = styled('div', {
   display: 'flex',
   gap: '1.25rem',
-  alignItems: 'flex-start',
   width: '100%',
 })
 
@@ -37,7 +36,8 @@ export const CardImage = styled('img', {
 export const ShopCardText = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.2rem',
+  justifyContent: 'space-between',
+  minHeight: '100%',
 
   '@media (min-width: 480px)': {
     width: '18rem',
@@ -45,13 +45,14 @@ export const ShopCardText = styled('div', {
 
   '@media (min-width: 1440px)': {
     width: '100%',
-    justifyContent: 'space-between',
   },
 })
 
 export const TextContainer = styled('div', {
   display: 'flex',
+  flexDirection: 'column',
   gap: '0.5rem',
+  width: '100%',
 
   '@media (min-width: 480px)': {
     justifyContent: 'space-between',
@@ -65,9 +66,9 @@ export const TextContainer = styled('div', {
 })
 
 export const CardLabel = styled('p', {
-  width: '60%',
   color: '$gray100',
   fontSize: '1rem',
+  width: '100%',
 
   '@media (min-width: 480px)': {
     width: 'auto',
@@ -80,6 +81,7 @@ export const CardLabel = styled('p', {
 export const CardPrice = styled('strong', {
   fontWeight: '700',
   color: '$gray100',
+  fontSize: '1.05rem',
 })
 
 export const ButtonsContainer = styled('div', {
@@ -96,6 +98,7 @@ export const RemoveButton = styled('div', {
   border: 'none',
   borderRadius: '8px',
   backgroundColor: '$base-button',
+  alignSelf: 'flex-end',
   transition: '300ms',
 
   svg: {
