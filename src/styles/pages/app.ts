@@ -1,4 +1,4 @@
-import { styled } from "..";
+import { styled } from '..'
 
 export const Container = styled('div', {
   display: 'flex',
@@ -11,29 +11,47 @@ export const Container = styled('div', {
 export const Header = styled('header', {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   padding: '2rem 0',
-  width: '100%',
-  maxWidth: 1180,
   margin: '0 auto',
+  minWidth: '90%',
 
   img: {
-    width: '9.5rem',
+    width: '7rem',
   },
-  
-  '@media (min-width: 920px)': {
-    justifyContent: 'flex-start',
-    
+
+  '@media (min-width: 680px)': {
     img: {
-      marginLeft: '5rem',
-    }
+      width: '9.5rem',
+    },
   },
 
   '@media (min-width: 1440px)': {
-    justifyContent: 'flex-start',
-    
+    minWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
+
     img: {
       marginLeft: '0',
-    }
+    },
+  },
+})
+
+export const LocationContainer = styled('div', {
+  cursor: 'default',
+  display: 'flex',
+  alignItems: 'center',
+  borderRadius: '8px',
+  gap: '0.3rem',
+  padding: '0.4rem',
+  fontSize: '0.8rem',
+  color: '$green100',
+  backgroundColor: '$gray800',
+
+  '& .mapPin_icon': {
+    color: '$purple500',
+  },
+
+  '@media (min-width: 1440px)': {
+    padding: '0.75rem 0.9rem',
+    fontSize: '0.875rem',
   },
 })

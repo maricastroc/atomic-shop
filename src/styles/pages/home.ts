@@ -1,4 +1,4 @@
-import { styled } from "..";
+import { styled } from '..'
 
 export const Wrapper = styled('main', {
   display: 'flex',
@@ -22,12 +22,12 @@ export const Wrapper = styled('main', {
   '& .arrow--left': {
     left: '5px',
   },
-  
+
   '& .arrow--right': {
     left: 'auto',
     right: '5px',
   },
-  
+
   '& .arrow--disabled': {
     color: 'rgba(255, 255, 255, 0.5)',
   },
@@ -39,8 +39,7 @@ export const Wrapper = styled('main', {
 
   '@media (min-width: 920px)': {
     maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
-    marginLeft: 'auto',
-    marginRight: '0',
+    margin: '0 auto',
     minHeight: 560,
     width: '90%',
   },
@@ -50,7 +49,7 @@ export const HomeContainer = styled('main', {
   display: 'flex',
 })
 
-export const Product = styled('a', {
+export const Product = styled('span', {
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: '8px',
   cursor: 'pointer',
@@ -67,13 +66,6 @@ export const Product = styled('a', {
     scale: 0.8,
   },
 
-  '&:hover': {
-    footer: {
-      transform: 'translateY(0%)',
-      opacity: 1,
-    }
-  },
-
   '@media (min-width: 680px)': {
     img: {
       scale: 1,
@@ -85,8 +77,16 @@ export const Product = styled('a', {
   '@media (min-width: 860px)': {
     minWidth: 540,
   },
-})
 
+  '@media (min-width: 1024px)': {
+    '&:hover': {
+      footer: {
+        transform: 'translateY(0%)',
+        opacity: 1,
+      },
+    },
+  },
+})
 
 export const Footer = styled('footer', {
   position: 'absolute',
@@ -94,6 +94,7 @@ export const Footer = styled('footer', {
   left: '0.25rem',
   right: '0.25rem',
   padding: '1.5rem 2rem',
+  color: '$gray100',
 
   borderRadius: 6,
 
@@ -103,17 +104,23 @@ export const Footer = styled('footer', {
 
   backgroundColor: 'rgba(0, 0, 0, 0.6)',
 
-  transform: 'translateY(110%)',
-  opacity: 0,
-  transition: 'all 200ms ease-in-out',
-
   strong: {
-    fontSize: '$md'
+    fontSize: '$md',
+
+    '&:hover': {
+      filter: 'brightness(0.8)',
+    },
   },
 
   span: {
     fontSize: '$xl',
     fontWeight: 'bold',
-    color: '$green300'
+    color: '$green300',
+  },
+
+  '@media (min-width: 1024px)': {
+    transform: 'translateY(110%)',
+    opacity: 0,
+    transition: 'all 200ms ease-in-out',
   },
 })
