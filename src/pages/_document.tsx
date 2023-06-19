@@ -20,7 +20,6 @@ export default function Document() {
           id="stitches"
           dangerouslySetInnerHTML={{ __html: getCssText() }}
         />
-        <title>Atomic Shop</title>
       </Head>
       <body>
         <Main />

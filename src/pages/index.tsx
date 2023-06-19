@@ -1,8 +1,19 @@
 import { Arrow } from '../components/Arrow'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faFacebookSquare,
+  faInstagram,
+  faLinkedinIn,
+  faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons'
 
 import {
+  Container,
   Footer,
+  FooterItem,
+  FooterLogos,
   HomeContainer,
+  HomeFooter,
   Product,
   Wrapper,
 } from '@/src/styles/pages/home'
@@ -15,19 +26,20 @@ import { stripe } from '../lib/stripe'
 import { GetStaticProps } from 'next'
 import Stripe from 'stripe'
 import Link from 'next/link'
+import { faUserGroup } from '@fortawesome/free-solid-svg-icons'
 
 interface HomeProps {
   products: {
     id: string
     name: string
     imageUrl: string
-    price: number
+    price: string
     description: string
   }[]
 }
 
 export default function Home({ products }: HomeProps) {
-  console.log(JSON.stringify(products))
+  console.log(JSON.stringify(products.map((product) => product.imageUrl)))
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const [perView, setPerView] = useState(3)
@@ -68,45 +80,65 @@ export default function Home({ products }: HomeProps) {
 
   return (
     <>
-      <Wrapper className="navigation-wrapper">
-        <HomeContainer ref={sliderRef} className="keen-slider">
-          {products.reverse().map((product) => {
-            return (
-              <Link href={`product/${product.id}`} key={product.id}>
-                <Product className="keen-slider__slide number-slide1">
-                  <Image
-                    src={product.imageUrl}
-                    width={400}
-                    height={480}
-                    alt=""
-                  />
-                  <Footer>
-                    <strong>{product.name}</strong>
-                    <span>{product.price}</span>
-                  </Footer>
-                </Product>
-              </Link>
-            )
-          })}
-        </HomeContainer>
-        {loaded && instanceRef.current && (
-          <>
-            <Arrow
-              left
-              onClick={() => instanceRef.current?.prev()}
-              disabled={currentSlide === 0}
-            />
+      <Container>
+        <Wrapper className="navigation-wrapper">
+          <HomeContainer ref={sliderRef} className="keen-slider">
+            {products.map((product) => {
+              return (
+                <Link
+                  href={`product/${product.id}`}
+                  key={product.id}
+                  prefetch={false}
+                >
+                  <Product className="keen-slider__slide number-slide1">
+                    <Image
+                      src={product.imageUrl}
+                      width={400}
+                      height={480}
+                      alt=""
+                    />
+                    <Footer>
+                      <strong>{product.name}</strong>
+                      <span>{product.price}</span>
+                    </Footer>
+                  </Product>
+                </Link>
+              )
+            })}
+          </HomeContainer>
+          {loaded && instanceRef.current && (
+            <>
+              <Arrow
+                left
+                onClick={() => instanceRef.current?.prev()}
+                disabled={currentSlide === 0}
+              />
 
-            <Arrow
-              onClick={() => instanceRef.current?.next()}
-              disabled={
-                currentSlide ===
-                instanceRef.current.track.details.slides.length - 1
-              }
-            />
-          </>
-        )}
-      </Wrapper>
+              <Arrow
+                onClick={() => instanceRef.current?.next()}
+                disabled={
+                  currentSlide ===
+                  instanceRef.current.track.details.slides.length - 1
+                }
+              />
+            </>
+          )}
+        </Wrapper>
+        <HomeFooter>
+          <Link href="/about">
+            <FooterItem>
+              <FontAwesomeIcon icon={faUserGroup} />
+              <p>About Us</p>
+            </FooterItem>
+          </Link>
+          <FooterLogos>
+            <FontAwesomeIcon icon={faInstagram} />
+            <FontAwesomeIcon icon={faFacebookSquare} />
+            <FontAwesomeIcon icon={faLinkedinIn} />
+            <FontAwesomeIcon icon={faWhatsapp} />
+          </FooterLogos>
+        </HomeFooter>
+      </Container>
     </>
   )
 }

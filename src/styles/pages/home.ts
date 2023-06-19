@@ -1,5 +1,13 @@
 import { styled } from '..'
 
+export const Container = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+})
+
 export const Wrapper = styled('main', {
   display: 'flex',
   justifyContent: 'center',
@@ -122,5 +130,51 @@ export const Footer = styled('footer', {
     transform: 'translateY(110%)',
     opacity: 0,
     transition: 'all 200ms ease-in-out',
+  },
+})
+
+export const HomeFooter = styled('footer', {
+  marginTop: '4rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  backgroundColor: '$gray800',
+  padding: '1.5rem 5rem',
+  width: '100%',
+
+  p: {
+    fontWeight: 600,
+    color: '$gray300',
+  },
+})
+
+export const FooterItem = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  borderRadius: '8px',
+  gap: '0.7rem',
+  padding: '0.4rem',
+  fontSize: '0.8rem',
+  color: '$gray100',
+  backgroundColor: '$gray700',
+
+  svg: {
+    fontSize: '18px',
+    color: '$purple500',
+  },
+
+  '@media (min-width: 1440px)': {
+    padding: '0.6rem 0.9rem',
+    fontSize: '0.875rem',
+  },
+})
+
+export const FooterLogos = styled('div', {
+  display: 'flex',
+  gap: '1rem',
+
+  svg: {
+    fontSize: '28px',
+    color: '$purple500',
   },
 })

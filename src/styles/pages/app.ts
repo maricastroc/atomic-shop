@@ -43,7 +43,7 @@ export const LocationContainer = styled('div', {
   gap: '0.3rem',
   padding: '0.4rem',
   fontSize: '0.8rem',
-  color: '$green100',
+  color: '$gray100',
   backgroundColor: '$gray800',
 
   '& .mapPin_icon': {
