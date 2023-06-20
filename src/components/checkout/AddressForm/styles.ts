@@ -16,12 +16,15 @@ export const AddressContainer = styled('div', {
 
 export const AddressText = styled('div', {
   display: 'flex',
-  gap: '0.5rem',
+  alignItems: 'center',
+  gap: '0.8rem',
 })
 
 export const IconContainer = styled('span', {
-  color: '$purple500',
-  fontSize: '30px',
+  svg: {
+    color: '$purple500',
+    fontSize: '26px',
+  },
 })
 
 export const TextContainer = styled('div', {
@@ -96,6 +99,17 @@ export const InputContainer = styled('div', {
     '& [name="uf"]': {
       width: '15%',
     },
+  },
+})
+
+export const InputItem = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.75rem',
+
+  span: {
+    color: '$purple300',
+    fontSize: '0.85rem',
   },
 })
 

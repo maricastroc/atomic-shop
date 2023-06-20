@@ -1,4 +1,4 @@
-import { MapPinLine } from 'phosphor-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   AddressContainer,
   AddressInfoContent,
@@ -11,13 +11,53 @@ import {
   Paragraph,
   TextContainer,
 } from './styles'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { useFormContext, Controller } from 'react-hook-form'
+import { useEffect } from 'react'
+import axios from 'axios'
+import { useDebounce } from '@/src/utils/useDebounce'
+
+export type AddressType = {
+  zip: string
+  street: string
+  number: string
+  complement?: string
+  neighborhood: string
+  city: string
+  uf: string
+}
 
 export function AddressForm() {
+  const { watch, setValue, control } = useFormContext<AddressType>()
+
+  const zip = useDebounce(watch('zip'), 500)
+
+  useEffect(() => {
+    async function getAddress() {
+      if (zip) {
+        const { data } = await axios.get(
+          `https://viacep.com.br/ws/${zip}/json/`,
+        )
+
+        if (data.erro) {
+          return
+        }
+
+        setValue('street', data.logradouro)
+        setValue('neighborhood', data.bairro)
+        setValue('city', data.localidade)
+        setValue('uf', data.uf)
+      }
+    }
+
+    getAddress()
+  }, [zip, setValue])
+
   return (
     <AddressContainer>
       <AddressText>
         <IconContainer>
-          <MapPinLine size={22} />
+          <FontAwesomeIcon icon={faLocationDot} />
         </IconContainer>
         <TextContainer>
           <Heading>Delivery Address</Heading>
@@ -27,19 +67,84 @@ export function AddressForm() {
         </TextContainer>
       </AddressText>
       <AddressInfoContent>
-        <Input placeholder="Zip Code" name="zip" />
-        <Input placeholder="Street" name="street" />
+        <Controller
+          name="zip"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <Input className="zip" placeholder="ZIP" {...field} />
+          )}
+        />
+        <Controller
+          name="street"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <Input className="street" placeholder="street" {...field} />
+          )}
+        />
         <InputContainer>
-          <Input placeholder="Number" name="number" />
+          <Controller
+            name="number"
+            control={control}
+            rules={{
+              required: true,
+              pattern: {
+                value: /^[0-9]+$/,
+                message: '* Please enter a valid number',
+              },
+            }}
+            render={({ field }) => (
+              <Input
+                inputMode="numeric"
+                title="Please enter only numeric values"
+                className="number"
+                placeholder="Number"
+                pattern="/^[0-9]+$/"
+                {...field}
+              />
+            )}
+          />
           <ComplementContainer>
-            <Input placeholder="Complement" name="complement" />
+            <Controller
+              name="complement"
+              control={control}
+              render={() => (
+                <Input className="complement" placeholder="Complement" />
+              )}
+            />
             <span>Optional</span>
           </ComplementContainer>
         </InputContainer>
         <InputContainer>
-          <Input placeholder="Neighborhood" name="neighborhood" />
-          <Input placeholder="City" name="city" />
-          <Input placeholder="UF" name="uf" />
+          <Controller
+            name="neighborhood"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input
+                className="neighborhood"
+                placeholder="Neighborhood"
+                {...field}
+              />
+            )}
+          />
+          <Controller
+            name="city"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input className="city" placeholder="City" {...field} />
+            )}
+          />
+          <Controller
+            name="uf"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Input className="uf" placeholder="UF" {...field} />
+            )}
+          />
         </InputContainer>
       </AddressInfoContent>
     </AddressContainer>
