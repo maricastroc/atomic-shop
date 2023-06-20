@@ -36,17 +36,24 @@ import { useContext, useState } from 'react'
 import { ShopListContext } from '../contexts/shopList'
 
 export interface ProductProps {
-  product: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-    description: string
-    defaultPriceId: string
-  }
+  id: string
+  name: string
+  imageUrl: string
+  price: string
+  description: string
+  quantity: 1
+  defaultPriceId: string
 }
 
-export default function Product({ product }: ProductProps) {
+export default function Product({
+  id,
+  name,
+  imageUrl,
+  price,
+  description,
+  quantity,
+  defaultPriceId,
+}: ProductProps) {
   const { addNewProduct, shopList } = useContext(ShopListContext)
   const [buttonPressed, setButtonPressed] = useState(false)
   const { isFallback } = useRouter()
@@ -56,11 +63,19 @@ export default function Product({ product }: ProductProps) {
   }
 
   function handleAddNewProduct() {
-    addNewProduct({ product })
+    addNewProduct({
+      id,
+      name,
+      imageUrl,
+      price,
+      description,
+      quantity,
+      defaultPriceId,
+    })
     setButtonPressed(true)
   }
 
-  const phrases = product.description.split('.')
+  const phrases = description.split('.')
 
   console.log(shopList)
 
@@ -68,12 +83,12 @@ export default function Product({ product }: ProductProps) {
     <Wrapper>
       <ProductContainer>
         <ImageContainer>
-          <Image src={product.imageUrl} alt="" width={400} height={480} />
+          <Image src={imageUrl} alt="" width={400} height={480} />
         </ImageContainer>
         <ProductDetails>
           <div>
-            <h1>{product.name}</h1>
-            <span>{product.price}</span>
+            <h1>{name}</h1>
+            <span>{price}</span>
             <ProductDescription>
               {phrases.map((phrase, index) => {
                 return (
@@ -149,17 +164,15 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
   const price = product.default_price as Stripe.Price
   return {
     props: {
-      product: {
-        id: product.id,
-        name: product.name,
-        imageUrl: product.images[0],
-        price: new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        }).format(price.unit_amount! / 100),
-        description: product.description,
-        defaultPriceId: price.id,
-      },
+      id: product.id,
+      name: product.name,
+      imageUrl: product.images[0],
+      price: new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(price.unit_amount! / 100),
+      description: product.description,
+      defaultPriceId: price.id,
     },
     revalidate: 60 * 60 * 1, // 1 hours
   }

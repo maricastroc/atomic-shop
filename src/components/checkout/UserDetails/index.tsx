@@ -28,12 +28,21 @@ export type UserDetailsType = {
   receiveNews: boolean
 }
 
-export function UserDetails() {
+interface UserDetailsProps {
+  onChange: (checked: boolean) => void
+}
+
+export function UserDetails({ onChange }: UserDetailsProps) {
   const [checked, setChecked] = useState(true)
   const {
     control,
     formState: { errors },
   } = useFormContext<UserDetailsType>()
+
+  function handleCheckedChange() {
+    setChecked(!checked)
+    onChange(!checked)
+  }
 
   return (
     <Container>
@@ -125,7 +134,7 @@ export function UserDetails() {
             defaultChecked
             id="c1"
             checked={checked}
-            onCheckedChange={() => setChecked(!checked)}
+            onCheckedChange={handleCheckedChange}
           >
             <Checkbox.Indicator className="CheckboxIndicator">
               <CheckIcon />

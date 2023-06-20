@@ -34,19 +34,23 @@ export function AddressForm() {
 
   useEffect(() => {
     async function getAddress() {
-      if (zip) {
-        const { data } = await axios.get(
-          `https://viacep.com.br/ws/${zip}/json/`,
-        )
+      try {
+        if (zip) {
+          const { data } = await axios.get(
+            `https://viacep.com.br/ws/${zip}/json/`,
+          )
 
-        if (data.erro) {
-          return
+          if (data.erro) {
+            return
+          }
+
+          setValue('street', data.logradouro)
+          setValue('neighborhood', data.bairro)
+          setValue('city', data.localidade)
+          setValue('uf', data.uf)
         }
-
-        setValue('street', data.logradouro)
-        setValue('neighborhood', data.bairro)
-        setValue('city', data.localidade)
-        setValue('uf', data.uf)
+      } catch {
+        console.log('An error ocurred.')
       }
     }
 
@@ -100,7 +104,7 @@ export function AddressForm() {
                 title="Please enter only numeric values"
                 className="number"
                 placeholder="Number"
-                pattern="/^[0-9]+$/"
+                pattern="[0-9]*"
                 {...field}
               />
             )}
