@@ -37,6 +37,11 @@ export const TextContainer = styled('div', {
   '@media (min-width: 980px)': {
     width: '28rem',
   },
+
+  a: {
+    boxShadow: 'none',
+    textDecoration: 'none',
+  },
 })
 
 export const Heading = styled('h2', {
@@ -82,6 +87,38 @@ export const Paragraph = styled('p', {
   },
 })
 
+export const BackToHome = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+  cursor: 'pointer',
+  width: '8rem',
+  margin: '3rem auto 0',
+
+  svg: {
+    fontSize: '22px',
+    color: '$purple300',
+  },
+
+  p: {
+    color: '$purple300',
+    fontWeight: 400,
+  },
+
+  '&:hover': {
+    filter: 'brightness(1.2)',
+    transition: 'all 200ms',
+  },
+
+  '&: focus': {
+    boxShadow: 'none',
+  },
+
+  '@media (min-width: 768px)': {
+    margin: '3rem 0 0',
+  },
+})
+
 export const LottieContainer = styled('div', {
   display: 'flex',
   width: 'clamp(10rem, 80%, 18rem)',
@@ -97,14 +134,14 @@ export const LottieContainer = styled('div', {
 })
 
 export const InfoContainer = styled('div', {
-  marginTop: '8rem',
+  marginTop: '6rem',
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   gap: '2rem',
-  padding: '3rem 0',
+  padding: '2rem 0',
 
   backgroundColor: '$gray800',
 
@@ -134,18 +171,20 @@ export const InfoItem = styled('div', {
   flexDirection: 'column',
   alignItems: 'center',
   textAlign: 'center',
-  gap: '0.1rem',
+  gap: '0.7rem',
   opacity: '1',
   width: '10rem',
 
   p: {
-    backgroundColor: '$gray800',
+    backgroundColor: '$gray700',
     borderRadius: '4px',
     color: '$gray300',
     padding: '0.5rem 0.75rem',
+    fontSize: '0.95rem',
   },
 
   svg: {
+    fontSize: '28px',
     color: '$green500',
   },
 

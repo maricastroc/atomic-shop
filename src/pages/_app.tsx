@@ -14,6 +14,7 @@ import {
   faInstagram,
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons'
+import { ShopListContextProvider } from './contexts/shopList'
 
 globalStyles()
 
@@ -23,19 +24,21 @@ export default function App({ Component, pageProps }: AppProps) {
   const { city, uf } = useLocation()
 
   return (
-    <Container>
-      <Header>
-        <Link href="/">
-          <Image src={LogoImg} alt="" />
-        </Link>
-        <LocationContainer>
-          <MapPin size={22} weight="fill" className="mapPin_icon" />
-          <p>
-            {city} {uf}
-          </p>
-        </LocationContainer>
-      </Header>
-      <Component {...pageProps} />
-    </Container>
+    <ShopListContextProvider>
+      <Container>
+        <Header>
+          <Link href="/">
+            <Image src={LogoImg} alt="" />
+          </Link>
+          <LocationContainer>
+            <MapPin size={22} weight="fill" className="mapPin_icon" />
+            <p>
+              {city} {uf}
+            </p>
+          </LocationContainer>
+        </Header>
+        <Component {...pageProps} />
+      </Container>
+    </ShopListContextProvider>
   )
 }

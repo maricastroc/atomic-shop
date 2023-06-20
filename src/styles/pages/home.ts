@@ -139,11 +139,12 @@ export const HomeFooter = styled('footer', {
   alignItems: 'center',
   justifyContent: 'space-between',
   backgroundColor: '$gray800',
-  padding: '1.5rem 5rem',
+  padding: '1rem 5rem',
   width: '100%',
 
   p: {
     fontWeight: 600,
+    fontSize: '0.8rem',
     color: '$gray300',
   },
 })
@@ -166,6 +167,11 @@ export const FooterItem = styled('div', {
   '@media (min-width: 1440px)': {
     padding: '0.6rem 0.9rem',
     fontSize: '0.875rem',
+  },
+
+  '&:hover': {
+    filter: 'brightness(1.2)',
+    transition: 'all 200ms',
   },
 })
 

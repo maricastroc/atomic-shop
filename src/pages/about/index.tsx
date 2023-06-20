@@ -1,7 +1,9 @@
 import Lottie from 'lottie-react'
 import rocketAnimation from '../../../public/lf20_ttz7k6cj.json'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   AboutContainer,
+  BackToHome,
   Heading,
   InfoContainer,
   InfoItem,
@@ -12,7 +14,14 @@ import {
   ParagraphsContainer,
   TextContainer,
 } from '@/src/styles/pages/about'
-import { Package, Recycle, ShoppingCart, Truck } from 'phosphor-react'
+import {
+  faAngleLeft,
+  faCartShopping,
+  faMoneyCheckDollar,
+  faRecycle,
+  faTruckFast,
+} from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
 export default function AboutUs() {
   return (
@@ -48,26 +57,32 @@ export default function AboutUs() {
               <span>And thus, Atomic was born.</span>
             </Paragraph>
           </ParagraphsContainer>
+          <Link href="/">
+            <BackToHome>
+              <FontAwesomeIcon icon={faAngleLeft} />
+              <p>Back to Home</p>
+            </BackToHome>
+          </Link>
         </TextContainer>
       </IntroSection>
       <InfoContainer>
         <InfoItemsContainer>
           <InfoItem>
-            <Truck size={36} />
+            <FontAwesomeIcon icon={faTruckFast} />
             <p>Made-to-order</p>
           </InfoItem>
           <InfoItem>
-            <Recycle size={36} />
+            <FontAwesomeIcon icon={faRecycle} />
             <p>Eco-friendly production</p>
           </InfoItem>
         </InfoItemsContainer>
         <InfoItemsContainer>
           <InfoItem>
-            <ShoppingCart size={36} />
+            <FontAwesomeIcon icon={faCartShopping} />
             <p>Free exchanges</p>
           </InfoItem>
           <InfoItem>
-            <Package size={36} />
+            <FontAwesomeIcon icon={faMoneyCheckDollar} />
             <p>Free shipping over $150</p>
           </InfoItem>
         </InfoItemsContainer>

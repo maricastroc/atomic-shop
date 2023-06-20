@@ -128,7 +128,7 @@ export default function Home({ products }: HomeProps) {
           <Link href="/about">
             <FooterItem>
               <FontAwesomeIcon icon={faUserGroup} />
-              <p>About Us</p>
+              <p>ABOUT US</p>
             </FooterItem>
           </Link>
           <FooterLogos>
