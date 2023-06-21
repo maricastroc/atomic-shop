@@ -9,7 +9,7 @@ import {
   faInstagram,
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons'
-import { ShopListContextProvider } from './contexts/shopList'
+import ShopListContextProvider from './contexts/shopList'
 import { Header } from '../components/Header'
 
 globalStyles()
