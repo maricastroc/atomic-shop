@@ -263,6 +263,7 @@ export const ButtonsPressed = styled('div', {
 
   a: {
     textDecoration: 'none',
+    boxShadow: 'none',
   },
 })
 
@@ -291,6 +292,10 @@ export const BackToHome = styled('div', {
   '&:hover': {
     filter: 'brightness(1.4)',
   },
+
+  '&:focus': {
+    boxShadow: 'none',
+  },
 })
 
 export const ViewCart = styled('div', {
@@ -318,6 +323,10 @@ export const ViewCart = styled('div', {
 
   '&:hover': {
     filter: 'brightness(1.4)',
+  },
+
+  '&:focus': {
+    boxShadow: 'none',
   },
 })
 

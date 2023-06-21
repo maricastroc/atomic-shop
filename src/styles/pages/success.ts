@@ -7,6 +7,11 @@ export const SuccessContainer = styled('div', {
   alignItems: 'center',
   width: '100%',
   margin: '0 auto',
+
+  a: {
+    textDecoration: 'none',
+    boxShadow: 'none',
+  },
 })
 
 export const ItemsContainer = styled('div', {
@@ -64,9 +69,11 @@ export const ItemWrapper = styled('div', {
 })
 
 export const Heading = styled('h2', {
+  marginTop: '1.5rem',
   fontSize: '2rem',
   color: '$gray100',
   fontWeight: 600,
+  textAlign: 'center',
 })
 
 export const Paragraph = styled('p', {
@@ -74,6 +81,8 @@ export const Paragraph = styled('p', {
   color: '$gray300',
   fontWeight: 400,
   marginTop: '0.8rem',
+  textAlign: 'center',
+  width: '80%',
 
   span: {
     color: '$gray300',
@@ -91,6 +100,10 @@ export const BackToHome = styled('button', {
   padding: '1rem',
   borderRadius: '8px',
   fontWeight: 600,
+
+  '&:focus': {
+    boxShadow: 'none',
+  },
 
   '&:hover': {
     filter: 'brightness(1.3)',

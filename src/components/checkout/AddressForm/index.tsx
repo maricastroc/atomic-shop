@@ -84,7 +84,7 @@ export function AddressForm() {
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
-            <Input className="street" placeholder="street" {...field} />
+            <Input className="street" placeholder="Street" {...field} />
           )}
         />
         <InputContainer>
