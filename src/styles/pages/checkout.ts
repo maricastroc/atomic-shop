@@ -110,6 +110,11 @@ export const ConfirmButton = styled('button', {
     filter: 'brightness(0.8)',
     transition: '200ms',
   },
+
+  '&:disabled': {
+    opacity: 0.8,
+    cursor: 'not-allowed',
+  },
 })
 
 export const ConfirmButtonLabel = styled('p', {

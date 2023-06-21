@@ -57,10 +57,11 @@ export const ImageContainer = styled('div', {
   },
 
   '@media (min-width: 980px)': {
-    scale: 1,
+    margin: '9rem auto',
+    scale: 1.4,
     width: '100%',
-    maxWidth: '30rem',
-    minHeight: '35rem',
+    maxWidth: '23rem',
+    minHeight: '26rem',
     img: {
       objectFit: 'cover',
     },
@@ -113,6 +114,7 @@ export const OptionsContainer = styled('div', {
     backgroundPosition: 'center',
     backgroundPositionX: '5.5rem',
     marginRight: '10px',
+    cursor: 'pointer',
     backgroundSize: '14px',
     paddingRight: '20px',
     backgroundColor: '$gray700',
@@ -143,6 +145,7 @@ export const OptionsContainer = styled('div', {
 })
 
 export const SelectContainer = styled('div', {
+  cursor: 'pointer',
   display: 'flex',
   flexDirection: 'column',
   gap: '0.5rem',

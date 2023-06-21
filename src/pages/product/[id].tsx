@@ -58,7 +58,6 @@ export default function Product({
   imageUrl,
   price,
   description,
-  quantity,
   defaultPriceId,
 }: ProductProps) {
   const { addNewProduct } = useContext(ShopListContext)
@@ -70,8 +69,6 @@ export default function Product({
   if (isFallback) {
     return <p>loading...</p>
   }
-
-  console.log(quantityProduct)
 
   function handleAddNewProduct() {
     addNewProduct(

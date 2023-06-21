@@ -35,6 +35,8 @@ export type FormDataType = {
 export default function Checkout() {
   const { shopList, handleCheckout, checkoutData } = useContext(ShopListContext)
   const [checked, setChecked] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+
   const methods = useForm<FormDataType>()
 
   const total = useMemo(() => {
@@ -77,6 +79,8 @@ export default function Checkout() {
 
     async function handleBuyProducts() {
       try {
+        setIsLoading(true)
+
         const response = await axios.post('api/checkout', {
           lineItems: shopList.map((item) => {
             return {
@@ -90,6 +94,7 @@ export default function Checkout() {
 
         window.location.href = checkoutUrl
       } catch {
+        setIsLoading(false)
         console.log('An error ocurred.')
       }
     }
@@ -127,7 +132,7 @@ export default function Checkout() {
                 <strong>{formattedTotal}</strong>
               </TextContainer>
             </ShopInfoTextContainer>
-            <ConfirmButton type="submit">
+            <ConfirmButton type="submit" disabled={isLoading}>
               <ConfirmButtonLabel>Confirm delivery</ConfirmButtonLabel>
             </ConfirmButton>
           </>
