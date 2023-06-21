@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { MapPin } from 'phosphor-react'
 import Link from 'next/link'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
   ButtonShop,
   ButtonShopLabel,
@@ -16,8 +16,17 @@ import { ShopListContext } from '@/src/pages/contexts/shopList'
 import LogoImg from '../../../public/assets/logo-2.svg'
 
 export function Header() {
-  const { productsQuantity } = useContext(ShopListContext)
+  const [productsQuantity, setProductsQuantity] = useState(0)
+  const { shopList } = useContext(ShopListContext)
   const { city, uf } = useLocation()
+
+  useEffect(() => {
+    const totalQuantity = shopList.reduce((accumulator, product) => {
+      return accumulator + product.quantity
+    }, 0)
+
+    setProductsQuantity(totalQuantity)
+  }, [shopList])
 
   console.log(productsQuantity)
 

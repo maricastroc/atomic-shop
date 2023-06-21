@@ -9,8 +9,7 @@ import {
   faInstagram,
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons'
-import { ShopListContext, ShopListContextProvider } from './contexts/shopList'
-import { useContext } from 'react'
+import { ShopListContextProvider } from './contexts/shopList'
 import { Header } from '../components/Header'
 
 globalStyles()
@@ -18,10 +17,6 @@ globalStyles()
 library.add(fas, faFacebookSquare, faWhatsapp, faInstagram, faLinkedinIn)
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { productsQuantity } = useContext(ShopListContext)
-
-  console.log(productsQuantity)
-
   return (
     <ShopListContextProvider>
       <Container>

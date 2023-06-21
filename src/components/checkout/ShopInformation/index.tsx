@@ -1,5 +1,10 @@
-import { useContext, useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
+import Link from 'next/link'
+import { ShopListContext } from '@/src/pages/contexts/shopList'
 import { ShopCard } from './ShopCard'
+import Lottie from 'lottie-react'
+import ghostAnimation from '../../../../public/lottie/ghost.json'
+
 import {
   ConfirmButton,
   ConfirmButtonLabel,
@@ -14,17 +19,14 @@ import {
   TextContainer,
   TextEmptyContainer,
 } from './styles'
-import { ShopListContext } from '@/src/pages/contexts/shopList'
-import Lottie from 'lottie-react'
-import ghostAnimation from '../../../../public/lottie/ghost.json'
-import Link from 'next/link'
 
 export function ShopInformation() {
   const { shopList } = useContext(ShopListContext)
 
   const total = useMemo(() => {
     return shopList.reduce((acc, product) => {
-      const productPrice = parseFloat(product.price.replace('$', ''))
+      const productPrice =
+        parseFloat(product.price.replace('$', '')) * product.quantity
 
       return acc + productPrice
     }, 0)
@@ -46,19 +48,12 @@ export function ShopInformation() {
         {shopList.length > 0 ? (
           <ShopInfoBox>
             <ShopCardsContainer>
-              {shopList.map((item, index) => {
-                return (
-                  <>
-                    <ShopCard
-                      key={index}
-                      title={item.name}
-                      price={item.price}
-                      imageUrl={item.imageUrl}
-                    />
-                    <Separator></Separator>
-                  </>
-                )
-              })}
+              {shopList.map((item, index) => (
+                <React.Fragment key={index}>
+                  <ShopCard {...item} />
+                  <Separator />
+                </React.Fragment>
+              ))}
             </ShopCardsContainer>
             <ShopInfoTextContainer>
               <TextContainer>

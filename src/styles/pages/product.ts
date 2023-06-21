@@ -58,6 +58,94 @@ export const ProductDetails = styled('div', {
   },
 })
 
+export const OptionsContainer = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '3rem',
+
+  select: {
+    appearance: 'none',
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    backgroundImage: 'url("/assets/arrow_down.svg")',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundPositionX: '5.5rem',
+    marginRight: '10px',
+    backgroundSize: '14px',
+    paddingRight: '20px',
+    backgroundColor: '$gray700',
+    padding: '0.7rem',
+    borderRadius: '16px',
+    border: 'none',
+    color: '$gray300',
+    fontWeight: 600,
+    width: '7rem',
+  },
+})
+
+export const SelectContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.7rem',
+
+  label: {
+    color: '$gray300',
+    fontWeight: 600,
+    fontSize: '0.9rem',
+  },
+})
+
+export const QuantityWrapper = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.7rem',
+
+  label: {
+    color: '$gray300',
+    fontWeight: 600,
+    fontSize: '0.9rem',
+  },
+})
+
+export const QuantityContainer = styled('div', {
+  display: 'flex',
+  backgroundColor: '$gray700',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '0.4rem 0.5rem',
+  borderRadius: '16px',
+  width: '10rem',
+
+  span: {
+    color: '$gray300',
+    fontWeight: 600,
+  },
+})
+
+export const QuantityButton = styled('button', {
+  cursor: 'pointer',
+  display: 'flex',
+  backgroundColor: '$purple700',
+  borderRadius: '50%',
+  border: 'none',
+  padding: '0.3rem',
+  filter: 'brightness(1.3)',
+
+  svg: {
+    color: '$gray300',
+    fontSize: '16px',
+  },
+
+  '&:focus': {
+    boxShadow: 'none',
+  },
+
+  '&:hover': {
+    filter: 'brightness(1.6)',
+  },
+})
+
 export const ButtonContainer = styled('div', {
   width: '100%',
   display: 'flex',
@@ -94,23 +182,10 @@ export const ButtonContainer = styled('div', {
 export const ProductDescription = styled('div', {
   marginTop: '2rem',
   display: 'flex',
-  flexDirection: 'column',
-  gap: '0.8rem',
-
-  p: {
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: '1.05rem',
-    color: '$gray300',
-  },
-
-  span: {
-    width: '0.4rem',
-    height: '2px',
-    fontSize: '1.05rem',
-    backgroundColor: '$green300',
-    marginRight: '0.6rem',
-  },
+  fontSize: '1rem',
+  color: '$gray300',
+  opacity: 0.8,
+  lineHeight: '1.5rem',
 })
 
 export const ButtonsPressed = styled('div', {
@@ -166,6 +241,7 @@ export const ViewCart = styled('div', {
   p: {
     color: '$green500',
     fontWeight: '600',
+    filter: 'brightness(1.3)',
   },
 
   svg: {

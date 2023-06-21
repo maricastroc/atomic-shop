@@ -12,11 +12,10 @@ interface HandleCheckoutType {
 
 interface ShopListContextData {
   shopList: ProductProps[]
-  addNewProduct: (product: ProductProps) => void
+  addNewProduct: (product: ProductProps, quantity: number) => void
   removeProduct: (title: string) => void
   checkoutData: HandleCheckoutType | null
   handleCheckout: (values: HandleCheckoutType) => void
-  productsQuantity: number
 }
 
 export const ShopListContext = createContext<ShopListContextData>(
@@ -31,27 +30,48 @@ export function ShopListContextProvider({
   children,
 }: ShopListContextProviderProps) {
   const [shopList, setShopList] = useState<ProductProps[]>([])
-  const [productsQuantity, setProductsQuantity] = useState<number>(0)
   const [checkoutData, setCheckoutData] = useState<HandleCheckoutType | null>(
     null,
   )
 
-  function addNewProduct(product: ProductProps) {
-    setShopList((prevShopList) => [...prevShopList, product])
-    calculateTotalQuantity(productsQuantity, 'remove')
+  function addNewProduct(product: ProductProps, quantityToAdd: number) {
+    setShopList((prevShopList) => {
+      const existingProductIndex = prevShopList.findIndex(
+        (p) => p.name === product.name,
+      )
+
+      if (existingProductIndex !== -1) {
+        const updatedShopList = [...prevShopList]
+        updatedShopList[existingProductIndex].quantity += quantityToAdd
+        return updatedShopList
+      } else {
+        const newProduct = { ...product, quantity: quantityToAdd }
+        return [...prevShopList, newProduct]
+      }
+    })
   }
 
   function removeProduct(title: string) {
-    const newShopList = shopList.filter((item) => item.name !== title)
+    setShopList((prevShopList) => {
+      const updatedShopList = [...prevShopList]
+      const productIndex = updatedShopList.findIndex(
+        (product) => product.name === title,
+      )
 
-    setShopList(newShopList)
-    calculateTotalQuantity(productsQuantity, 'add')
-  }
+      if (productIndex !== -1) {
+        const product = updatedShopList[productIndex]
+        if (product.quantity === 1) {
+          updatedShopList.splice(productIndex, 1)
+        } else {
+          updatedShopList[productIndex] = {
+            ...product,
+            quantity: product.quantity - 1,
+          }
+        }
+      }
 
-  function calculateTotalQuantity(currentQuantity: number, action: string) {
-    action === 'add'
-      ? setProductsQuantity(currentQuantity + 1)
-      : setProductsQuantity(currentQuantity - 1)
+      return updatedShopList
+    })
   }
 
   function handleCheckout({
@@ -69,7 +89,6 @@ export function ShopListContextProvider({
     addNewProduct,
     checkoutData,
     handleCheckout,
-    productsQuantity,
     removeProduct,
   }
 

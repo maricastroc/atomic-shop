@@ -12,6 +12,11 @@ import {
   BackToHome,
   ViewCart,
   ButtonsPressed,
+  OptionsContainer,
+  SelectContainer,
+  QuantityContainer,
+  QuantityWrapper,
+  QuantityButton,
 } from '@/src/styles/pages/product'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
@@ -30,6 +35,8 @@ import {
   faAngleLeft,
   faAngleRight,
   faCartShopping,
+  faMinus,
+  faPlus,
   faUserGroup,
 } from '@fortawesome/free-solid-svg-icons'
 import { useContext, useState } from 'react'
@@ -41,7 +48,7 @@ export interface ProductProps {
   imageUrl: string
   price: string
   description: string
-  quantity: 1
+  quantity: number
   defaultPriceId: string
 }
 
@@ -55,6 +62,8 @@ export default function Product({
   defaultPriceId,
 }: ProductProps) {
   const { addNewProduct } = useContext(ShopListContext)
+  const [showDetails, setShowDetails] = useState(true)
+  const [quantityProduct, setQuantityProduct] = useState(1)
   const [buttonPressed, setButtonPressed] = useState(false)
   const { isFallback } = useRouter()
 
@@ -62,20 +71,24 @@ export default function Product({
     return <p>loading...</p>
   }
 
-  function handleAddNewProduct() {
-    addNewProduct({
-      id,
-      name,
-      imageUrl,
-      price,
-      description,
-      quantity,
-      defaultPriceId,
-    })
-    setButtonPressed(true)
-  }
+  console.log(quantityProduct)
 
-  const phrases = description.split('.')
+  function handleAddNewProduct() {
+    addNewProduct(
+      {
+        id,
+        name,
+        imageUrl,
+        price,
+        description,
+        quantity: quantityProduct,
+        defaultPriceId,
+      },
+      quantityProduct,
+    )
+    setButtonPressed(true)
+    setShowDetails(false)
+  }
 
   return (
     <Wrapper>
@@ -87,17 +100,42 @@ export default function Product({
           <div>
             <h1>{name}</h1>
             <span>{price}</span>
-            <ProductDescription>
-              {phrases.map((phrase, index) => {
-                return (
-                  <p key={index}>
-                    <span></span>
-                    {phrase}
-                  </p>
-                )
-              })}
-            </ProductDescription>
+            <ProductDescription>{description}</ProductDescription>
           </div>
+          {showDetails && (
+            <OptionsContainer>
+              <SelectContainer>
+                <label htmlFor="">SIZE</label>
+                <select name="" id="" defaultValue="P">
+                  <option value="">P</option>
+                  <option value="">M</option>
+                  <option value="">G</option>
+                </select>
+              </SelectContainer>
+              <QuantityWrapper>
+                <label htmlFor="">QUANTITY</label>
+                <QuantityContainer>
+                  <QuantityButton
+                    onClick={() =>
+                      setQuantityProduct((prevQuantity) => prevQuantity + 1)
+                    }
+                  >
+                    <FontAwesomeIcon icon={faPlus} />
+                  </QuantityButton>
+                  <span>{quantityProduct}</span>
+                  <QuantityButton
+                    onClick={() => {
+                      quantityProduct === 1
+                        ? setQuantityProduct(1)
+                        : setQuantityProduct((prevQuantity) => prevQuantity - 1)
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faMinus} />
+                  </QuantityButton>
+                </QuantityContainer>
+              </QuantityWrapper>
+            </OptionsContainer>
+          )}
           <ButtonContainer>
             {buttonPressed && (
               <ButtonsPressed>

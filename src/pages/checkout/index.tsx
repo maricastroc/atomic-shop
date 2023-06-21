@@ -29,12 +29,11 @@ export type FormDataType = {
 }
 
 export default function Checkout() {
-  const { shopList, handleCheckout, checkoutData, productsQuantity } =
-    useContext(ShopListContext)
+  const { shopList, handleCheckout, checkoutData } = useContext(ShopListContext)
   const [checked, setChecked] = useState(true)
   const methods = useForm<FormDataType>()
 
-  console.log(productsQuantity)
+  console.log(shopList)
 
   const { handleSubmit } = methods
 

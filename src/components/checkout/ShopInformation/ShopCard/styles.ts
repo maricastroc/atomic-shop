@@ -90,29 +90,40 @@ export const ButtonsContainer = styled('div', {
   gap: '0.5rem',
 })
 
-export const RemoveButton = styled('div', {
-  cursor: 'pointer',
+export const QuantityContainer = styled('div', {
   display: 'flex',
+  backgroundColor: '$gray700',
+  justifyContent: 'space-between',
   alignItems: 'center',
-  gap: '0.3rem',
-  border: 'none',
-  borderRadius: '8px',
-  backgroundColor: '$base-button',
-  alignSelf: 'flex-end',
-  transition: '300ms',
+  padding: '0.3rem 0.5rem',
+  borderRadius: '16px',
+  width: '7rem',
 
-  svg: {
-    color: '$purple500',
-  },
-
-  '&:hover': {
-    filter: 'brightness(1.2)',
-    transition: 'all 200ms',
+  span: {
+    color: '$gray300',
+    fontWeight: 600,
   },
 })
 
-export const RemoveLabel = styled('p', {
-  fontWeight: 600,
-  fontSize: '0.9rem',
-  color: '$purple500',
+export const QuantityButton = styled('button', {
+  cursor: 'pointer',
+  display: 'flex',
+  backgroundColor: '$purple700',
+  filter: 'brightness(1.3)',
+  borderRadius: '50%',
+  border: 'none',
+  padding: '0.3rem',
+
+  svg: {
+    color: '$gray300',
+    fontSize: '14px',
+  },
+
+  '&:focus': {
+    boxShadow: 'none',
+  },
+
+  '&:hover': {
+    filter: 'brightness(1.6)',
+  },
 })
