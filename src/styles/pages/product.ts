@@ -9,21 +9,24 @@ export const Wrapper = styled('div', {
 })
 
 export const ProductContainer = styled('main', {
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr 1fr',
-  alignItems: 'stretch',
-  justifyContent: 'center',
-  gap: '4rem',
+  display: 'flex',
+  flexDirection: 'column',
+  width: '90%',
 
-  maxWidth: 1080,
-  margin: '1rem auto 0',
+  '@media (min-width: 980px)': {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    gap: '6rem',
+
+    maxWidth: 1080,
+    margin: '1rem auto 0',
+  },
 })
 
 export const ImageContainer = styled('div', {
-  width: '100%',
-  minWidth: 576,
-  minHeight: 560,
-
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: '8px',
   padding: '0.25rem',
@@ -32,16 +35,46 @@ export const ImageContainer = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
 
+  width: 'clamp(18rem, 80vw, 23rem)',
+  height: '23rem',
+  margin: '1rem auto 0',
+
   img: {
-    objectFit: 'cover',
+    scale: 0.7,
+  },
+
+  '@media (min-width: 480px)': {
+    margin: '2rem auto',
+    scale: 1.2,
+    img: {
+      objectFit: 'cover',
+    },
+  },
+
+  '@media (min-width: 680px)': {
+    margin: '4rem auto',
+    scale: 1.3,
+  },
+
+  '@media (min-width: 980px)': {
+    scale: 1,
+    width: '100%',
+    maxWidth: '30rem',
+    minHeight: '35rem',
+    img: {
+      objectFit: 'cover',
+    },
   },
 })
 
 export const ProductDetails = styled('div', {
+  marginTop: '4rem',
   display: 'flex',
   flexDirection: 'column',
-  minWidth: 400,
+  alignItems: 'center',
+  width: '100%',
   justifyContent: 'space-between',
+  textAlign: 'center',
 
   '> div': {
     '> span': {
@@ -56,12 +89,20 @@ export const ProductDetails = styled('div', {
     fontSize: '$2xl',
     color: '$gray300',
   },
+
+  '@media (min-width: 980px)': {
+    minWidth: 400,
+    textAlign: 'left',
+  },
 })
 
 export const OptionsContainer = styled('div', {
+  margin: '4rem 0 5rem',
   display: 'flex',
   alignItems: 'center',
-  gap: '3rem',
+  justifyContent: 'center',
+  gap: '2rem',
+  width: '100%',
 
   select: {
     appearance: 'none',
@@ -82,12 +123,29 @@ export const OptionsContainer = styled('div', {
     fontWeight: 600,
     width: '7rem',
   },
+
+  '@media (min-width: 680px)': {
+    select: {
+      width: '10rem',
+      padding: '0.6rem 0.7rem',
+      backgroundPositionX: '8.5rem',
+      fontSize: '1.05rem',
+    },
+  },
+
+  '@media (min-width: 980px)': {
+    marginTop: '3rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    width: '100%',
+  },
 })
 
 export const SelectContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.7rem',
+  gap: '0.5rem',
 
   label: {
     color: '$gray300',
@@ -99,7 +157,7 @@ export const SelectContainer = styled('div', {
 export const QuantityWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.7rem',
+  gap: '0.5rem',
 
   label: {
     color: '$gray300',
@@ -113,13 +171,19 @@ export const QuantityContainer = styled('div', {
   backgroundColor: '$gray700',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '0.4rem 0.5rem',
+  padding: '0.3rem 0.5rem',
   borderRadius: '16px',
-  width: '10rem',
+  width: '7rem',
 
   span: {
     color: '$gray300',
     fontWeight: 600,
+  },
+
+  '@media (min-width: 680px)': {
+    padding: '0.4rem 0.5rem',
+    borderRadius: '16px',
+    width: '10rem',
   },
 })
 
@@ -297,13 +361,17 @@ export const HomeFooter = styled('footer', {
   alignItems: 'center',
   justifyContent: 'space-between',
   backgroundColor: '$gray800',
-  padding: '1rem 5rem',
+  padding: '1rem',
   width: '100%',
 
   p: {
     fontWeight: 600,
     fontSize: '0.8rem',
     color: '$gray300',
+  },
+
+  '@media (min-width: 480px)': {
+    padding: '1rem 3rem',
   },
 })
 

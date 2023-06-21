@@ -92,7 +92,7 @@ export const ButtonShop = styled('button', {
   },
 
   '&:hover': {
-    filter: 'brightness(1.3)',
+    filter: 'brightness(1.6)',
     transition: 'all 200ms',
   },
 })

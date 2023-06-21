@@ -62,7 +62,10 @@ export function ShopCard({
         </CardImageContainer>
         <ShopCardText>
           <TextContainer>
-            <CardLabel>{name}</CardLabel>
+            <CardLabel>
+              {name}
+              <span>{quantity} unit(s) ordered</span>
+            </CardLabel>
             <CardPrice>{price}</CardPrice>
           </TextContainer>
           <ButtonsContainer>

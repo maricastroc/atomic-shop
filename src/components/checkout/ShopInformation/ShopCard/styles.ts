@@ -62,6 +62,7 @@ export const TextContainer = styled('div', {
   '@media (min-width: 1440px)': {
     justifyContent: 'space-between',
     display: 'flex',
+    flexDirection: 'row',
   },
 })
 
@@ -70,18 +71,32 @@ export const CardLabel = styled('p', {
   fontSize: '1rem',
   width: '100%',
 
+  span: {
+    display: 'none',
+  },
+
   '@media (min-width: 480px)': {
     width: 'auto',
+
+    span: {
+      marginTop: '0.3rem',
+      display: 'block',
+      color: '$gray300',
+      opacity: 0.8,
+      fontSize: '0.9rem',
+    },
   },
+
   '@media (min-width: 1440px)': {
     width: 'auto',
+    fontSize: '1.05rem',
   },
 })
 
 export const CardPrice = styled('strong', {
   fontWeight: '700',
   color: '$gray100',
-  fontSize: '1.05rem',
+  fontSize: '1.1rem',
 })
 
 export const ButtonsContainer = styled('div', {

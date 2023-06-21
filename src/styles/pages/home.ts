@@ -139,13 +139,17 @@ export const HomeFooter = styled('footer', {
   alignItems: 'center',
   justifyContent: 'space-between',
   backgroundColor: '$gray800',
-  padding: '1rem 5rem',
+  padding: '1rem 3rem',
   width: '100%',
 
   p: {
     fontWeight: 600,
     fontSize: '0.8rem',
     color: '$gray300',
+  },
+
+  '@media (min-width: 480)': {
+    padding: '1rem 1rem',
   },
 })
 

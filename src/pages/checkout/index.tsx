@@ -7,10 +7,14 @@ import {
   CheckoutContainer,
   CheckoutInfoContainer,
   CheckoutWrapper,
+  ConfirmButton,
+  ConfirmButtonLabel,
   Heading,
+  ShopInfoTextContainer,
   ShopInformationContainer,
+  TextContainer,
 } from '@/src/styles/pages/checkout'
-import { useContext, useState } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import { ShopListContext } from '../contexts/shopList'
 
 export type FormDataType = {
@@ -33,7 +37,23 @@ export default function Checkout() {
   const [checked, setChecked] = useState(true)
   const methods = useForm<FormDataType>()
 
-  console.log(shopList)
+  const total = useMemo(() => {
+    return shopList.reduce((acc, product) => {
+      const productPrice =
+        parseFloat(product.price.replace('$', '')) * product.quantity
+
+      return acc + productPrice
+    }, 0)
+  }, [shopList])
+
+  function formatCurrency(value: number) {
+    return new Intl.NumberFormat('en', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(value)
+  }
+
+  const formattedTotal = formatCurrency(total)
 
   const { handleSubmit } = methods
 
@@ -87,16 +107,31 @@ export default function Checkout() {
   return (
     <CheckoutWrapper>
       <CheckoutContainer onSubmit={handleSubmit(onSubmit)}>
-        <CheckoutInfoContainer>
-          <Heading>Complete your order</Heading>
-          <FormProvider {...methods}>
-            <AddressForm />
-            <UserDetails onChange={handleReceiveNews} />
-          </FormProvider>
-        </CheckoutInfoContainer>
+        {shopList.length > 0 && (
+          <CheckoutInfoContainer>
+            <Heading>Complete your order</Heading>
+            <FormProvider {...methods}>
+              <AddressForm />
+              <UserDetails onChange={handleReceiveNews} />
+            </FormProvider>
+          </CheckoutInfoContainer>
+        )}
         <ShopInformationContainer>
           <ShopInformation />
         </ShopInformationContainer>
+        {shopList.length > 0 && (
+          <>
+            <ShopInfoTextContainer>
+              <TextContainer>
+                <strong>Total</strong>
+                <strong>{formattedTotal}</strong>
+              </TextContainer>
+            </ShopInfoTextContainer>
+            <ConfirmButton type="submit">
+              <ConfirmButtonLabel>Confirm delivery</ConfirmButtonLabel>
+            </ConfirmButton>
+          </>
+        )}
       </CheckoutContainer>
     </CheckoutWrapper>
   )

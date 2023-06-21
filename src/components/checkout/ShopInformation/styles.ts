@@ -36,7 +36,7 @@ export const ShopInfoBox = styled('div', {
 
   '@media (min-width: 1440px)': {
     padding: '2.5rem',
-    width: '28rem',
+    width: 'clamp(10rem, 90vw, 50rem)',
   },
 })
 
@@ -52,81 +52,12 @@ export const Separator = styled('span', {
   backgroundColor: '$gray700',
 })
 
-export const ShopInfoTextContainer = styled('div', {
-  marginTop: '1.5rem',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.85rem',
-
-  div: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    color: '$gray100',
-    '> p': {
-      fontSize: '1rem',
-    },
-    '> span': {
-      fontSize: '1rem',
-    },
-    '> strong': {
-      color: '$base-subtitle',
-      fontSize: '1.25rem',
-      fontWeight: '700',
-    },
-  },
-
-  '@media (min-width: 1440px)': {
-    div: {
-      '> p': {
-        fontSize: '0.875rem',
-      },
-      '> span': {
-        fontSize: '0.875rem',
-      },
-      '> strong': {
-        color: '$gray100',
-        fontSize: '1.25rem',
-        fontWeight: '700',
-      },
-    },
-  },
-})
-
-export const TextContainer = styled('div', {
-  display: 'flex',
-  justifyContent: 'space-between',
-  color: '$gray100',
-})
-
-export const ConfirmButton = styled('button', {
-  marginTop: '1.5rem',
-  cursor: 'pointer',
-  display: 'flex',
-  backgroundColor: '$green500',
-  padding: '1rem',
-  width: '100%',
-  border: 'none',
-  borderRadius: '8px',
-
-  '&:hover': {
-    filter: 'brightness(0.8)',
-    transition: '200ms',
-  },
-})
-
-export const ConfirmButtonLabel = styled('p', {
-  width: '100%',
-  textAlign: 'center',
-  color: '$gray100',
-  fontSize: '1rem',
-  textTransform: 'uppercase',
-  fontWeight: '700',
-})
-
 export const EmptyContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  margin: '0 auto',
+  width: '100%',
   alignItems: 'center',
   backgroundColor: '$gray800',
   borderRadius: '8px',
@@ -140,8 +71,8 @@ export const TextEmptyContainer = styled('div', {
 
   p: {
     fontWeight: 600,
-    color: '$gray300',
-    fontSize: '1.05rem',
+    color: '$gray100',
+    fontSize: '1.1rem',
     lineHeight: '1.5rem',
     width: '80%',
     margin: '0 auto',
@@ -149,12 +80,18 @@ export const TextEmptyContainer = styled('div', {
   },
 
   a: {
-    color: '$purple500',
+    color: '$purple300',
+
+    '&:hover': {
+      filter: 'brightness(1.3)',
+    },
   },
 })
 
 export const LottieContainer = styled('div', {
   display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   width: 'clamp(10rem, 80%, 18rem)',
   margin: '0 auto',
 
