@@ -91,7 +91,7 @@ export default function Product({
   return (
     <>
       <Head>
-        <title>Product | Atomic Shop</title>
+        <title>{name} | Atomic Shop</title>
       </Head>
       <Wrapper>
         <ProductContainer>

@@ -82,6 +82,8 @@ export default function Home({ products }: HomeProps) {
     <>
       <Head>
         <title>Home | Atomic Shop</title>
+
+        <meta name="robots" content="noindex" />
       </Head>
 
       <Container>
