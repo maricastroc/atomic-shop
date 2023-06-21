@@ -26,7 +26,7 @@ interface ShopListContextProviderProps {
   children: ReactNode
 }
 
-export function ShopListContextProvider({
+export default function ShopListContextProvider({
   children,
 }: ShopListContextProviderProps) {
   const [shopList, setShopList] = useState<ProductProps[]>([])
