@@ -54,7 +54,7 @@ export default function Product({
   quantity,
   defaultPriceId,
 }: ProductProps) {
-  const { addNewProduct, shopList } = useContext(ShopListContext)
+  const { addNewProduct } = useContext(ShopListContext)
   const [buttonPressed, setButtonPressed] = useState(false)
   const { isFallback } = useRouter()
 
@@ -76,8 +76,6 @@ export default function Product({
   }
 
   const phrases = description.split('.')
-
-  console.log(shopList)
 
   return (
     <Wrapper>

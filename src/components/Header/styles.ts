@@ -53,6 +53,13 @@ export const ItemsContainer = styled('div', {
   alignItems: 'strech',
   gap: '0.5rem',
 
+  a: {
+    backgroundColor: '$gray800',
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: '8px',
+  },
+
   '@media (min-width: 340px)': {
     gap: '1rem',
   },
@@ -82,6 +89,11 @@ export const ButtonShop = styled('button', {
   '@media (min-width: 1440px)': {
     padding: '0.625rem',
     fontSize: '0.875rem',
+  },
+
+  '&:hover': {
+    filter: 'brightness(1.3)',
+    transition: 'all 200ms',
   },
 })
 

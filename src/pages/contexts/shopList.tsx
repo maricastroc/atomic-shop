@@ -13,6 +13,7 @@ interface HandleCheckoutType {
 interface ShopListContextData {
   shopList: ProductProps[]
   addNewProduct: (product: ProductProps) => void
+  removeProduct: (title: string) => void
   checkoutData: HandleCheckoutType | null
   handleCheckout: (values: HandleCheckoutType) => void
   productsQuantity: number
@@ -37,11 +38,20 @@ export function ShopListContextProvider({
 
   function addNewProduct(product: ProductProps) {
     setShopList((prevShopList) => [...prevShopList, product])
-    calculateTotalQuantity(productsQuantity)
+    calculateTotalQuantity(productsQuantity, 'remove')
   }
 
-  function calculateTotalQuantity(currentQuantity: number) {
-    setProductsQuantity(currentQuantity + 1)
+  function removeProduct(title: string) {
+    const newShopList = shopList.filter((item) => item.name !== title)
+
+    setShopList(newShopList)
+    calculateTotalQuantity(productsQuantity, 'add')
+  }
+
+  function calculateTotalQuantity(currentQuantity: number, action: string) {
+    action === 'add'
+      ? setProductsQuantity(currentQuantity + 1)
+      : setProductsQuantity(currentQuantity - 1)
   }
 
   function handleCheckout({
@@ -60,6 +70,7 @@ export function ShopListContextProvider({
     checkoutData,
     handleCheckout,
     productsQuantity,
+    removeProduct,
   }
 
   return (

@@ -1,5 +1,5 @@
 import Lottie from 'lottie-react'
-import rocketAnimation from '../../../public/lf20_ttz7k6cj.json'
+import rocketAnimation from '../../../public/lottie/lf20_ttz7k6cj.json'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   AboutContainer,

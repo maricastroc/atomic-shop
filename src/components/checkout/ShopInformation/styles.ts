@@ -123,10 +123,47 @@ export const ConfirmButtonLabel = styled('p', {
   fontWeight: '700',
 })
 
-export const Error = styled('div', {
-  width: '100%',
+export const EmptyContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '$gray800',
+  borderRadius: '8px',
+  paddingBottom: '3rem',
+})
+
+export const TextEmptyContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+
   p: {
+    fontWeight: 600,
+    color: '$gray300',
+    fontSize: '1.05rem',
+    lineHeight: '1.5rem',
+    width: '80%',
+    margin: '0 auto',
+    textAlign: 'center',
+  },
+
+  a: {
     color: '$purple500',
-    textAlign: 'end',
+  },
+})
+
+export const LottieContainer = styled('div', {
+  display: 'flex',
+  width: 'clamp(10rem, 80%, 18rem)',
+  margin: '0 auto',
+
+  '@media (min-width: 768px)': {
+    width: 'clamp(10rem, 80%, 22rem)',
+  },
+
+  '@media (min-width: 980px)': {
+    width: 'clamp(10rem, 80%, 25rem)',
+    scale: 1.2,
   },
 })

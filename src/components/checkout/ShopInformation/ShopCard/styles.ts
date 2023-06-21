@@ -106,11 +106,8 @@ export const RemoveButton = styled('div', {
   },
 
   '&:hover': {
-    backgroundColor: '$base-hover',
-
-    svg: {
-      color: '$purple700',
-    },
+    filter: 'brightness(1.2)',
+    transition: 'all 200ms',
   },
 })
 

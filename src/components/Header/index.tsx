@@ -33,12 +33,14 @@ export function Header() {
             {city} {uf}
           </p>
         </LocationContainer>
-        <ButtonShop>
-          <ButtonShopLabel>
-            <p>{productsQuantity}</p>
-          </ButtonShopLabel>
-          <FontAwesomeIcon icon={faCartShopping} />
-        </ButtonShop>
+        <Link href="/checkout">
+          <ButtonShop>
+            <ButtonShopLabel>
+              <p>{productsQuantity}</p>
+            </ButtonShopLabel>
+            <FontAwesomeIcon icon={faCartShopping} />
+          </ButtonShop>
+        </Link>
       </ItemsContainer>
     </HeaderContainer>
   )

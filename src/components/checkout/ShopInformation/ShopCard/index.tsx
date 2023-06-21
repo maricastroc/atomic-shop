@@ -12,24 +12,31 @@ import {
   ShopCardText,
   TextContainer,
 } from './styles'
+import { useContext } from 'react'
+import { ShopListContext } from '@/src/pages/contexts/shopList'
 
-export function ShopCard() {
+export interface ShopCardProps {
+  title: string
+  price: string
+  imageUrl: string
+}
+
+export function ShopCard({ title, price, imageUrl }: ShopCardProps) {
+  const { removeProduct } = useContext(ShopListContext)
+
   return (
     <ShopCardContainer>
       <InfoContainer>
         <CardImageContainer>
-          <CardImage
-            src="https://files.stripe.com/links/MDB8YWNjdF8xTktDZWVCZmsyRjZFcnpLfGZsX3Rlc3RfdXdkcVFTWWhqc0JTUHJNVkwxMzU3cEFx00GDI4cDfJ"
-            alt=""
-          />
+          <CardImage src={imageUrl} alt="" />
         </CardImageContainer>
         <ShopCardText>
           <TextContainer>
-            <CardLabel>Stupid People T-Shirt</CardLabel>
-            <CardPrice>$ 25.00</CardPrice>
+            <CardLabel>{title}</CardLabel>
+            <CardPrice>{price}</CardPrice>
           </TextContainer>
           <ButtonsContainer>
-            <RemoveButton>
+            <RemoveButton onClick={() => removeProduct(title)}>
               <Trash size={16} />
               <RemoveLabel>Remove</RemoveLabel>
             </RemoveButton>
