@@ -41,6 +41,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { useContext, useState } from 'react'
 import { ShopListContext } from '../contexts/shopList'
+import Head from 'next/head'
 
 export interface ProductProps {
   id: string
@@ -88,94 +89,101 @@ export default function Product({
   }
 
   return (
-    <Wrapper>
-      <ProductContainer>
-        <ImageContainer>
-          <Image src={imageUrl} alt="" width={400} height={480} />
-        </ImageContainer>
-        <ProductDetails>
-          <div>
-            <h1>{name}</h1>
-            <span>{price}</span>
-            <ProductDescription>{description}</ProductDescription>
-          </div>
-          {showDetails && (
-            <OptionsContainer>
-              <SelectContainer>
-                <label htmlFor="">SIZE</label>
-                <select name="" id="" defaultValue="P">
-                  <option value="">P</option>
-                  <option value="">M</option>
-                  <option value="">G</option>
-                </select>
-              </SelectContainer>
-              <QuantityWrapper>
-                <label htmlFor="">QUANTITY</label>
-                <QuantityContainer>
-                  <QuantityButton
-                    onClick={() =>
-                      setQuantityProduct((prevQuantity) => prevQuantity + 1)
-                    }
-                  >
-                    <FontAwesomeIcon icon={faPlus} />
-                  </QuantityButton>
-                  <span>{quantityProduct}</span>
-                  <QuantityButton
-                    onClick={() => {
-                      quantityProduct === 1
-                        ? setQuantityProduct(1)
-                        : setQuantityProduct((prevQuantity) => prevQuantity - 1)
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faMinus} />
-                  </QuantityButton>
-                </QuantityContainer>
-              </QuantityWrapper>
-            </OptionsContainer>
-          )}
-          <ButtonContainer>
-            {buttonPressed && (
-              <ButtonsPressed>
-                <Link href="/">
-                  <BackToHome>
-                    <FontAwesomeIcon icon={faAngleLeft} />
-                    <p onClick={() => setButtonPressed(false)}>
-                      Continue Shopping
-                    </p>
-                  </BackToHome>
-                </Link>
-                <Link href="/checkout">
-                  <ViewCart>
-                    <p onClick={() => setButtonPressed(false)}>
-                      Go to checkout
-                    </p>
-                    <FontAwesomeIcon icon={faAngleRight} />
-                  </ViewCart>
-                </Link>
-              </ButtonsPressed>
+    <>
+      <Head>
+        <title>Product | Atomic Shop</title>
+      </Head>
+      <Wrapper>
+        <ProductContainer>
+          <ImageContainer>
+            <Image src={imageUrl} alt="" width={400} height={480} />
+          </ImageContainer>
+          <ProductDetails>
+            <div>
+              <h1>{name}</h1>
+              <span>{price}</span>
+              <ProductDescription>{description}</ProductDescription>
+            </div>
+            {showDetails && (
+              <OptionsContainer>
+                <SelectContainer>
+                  <label htmlFor="">SIZE</label>
+                  <select name="" id="" defaultValue="P">
+                    <option value="">P</option>
+                    <option value="">M</option>
+                    <option value="">G</option>
+                  </select>
+                </SelectContainer>
+                <QuantityWrapper>
+                  <label htmlFor="">QUANTITY</label>
+                  <QuantityContainer>
+                    <QuantityButton
+                      onClick={() =>
+                        setQuantityProduct((prevQuantity) => prevQuantity + 1)
+                      }
+                    >
+                      <FontAwesomeIcon icon={faPlus} />
+                    </QuantityButton>
+                    <span>{quantityProduct}</span>
+                    <QuantityButton
+                      onClick={() => {
+                        quantityProduct === 1
+                          ? setQuantityProduct(1)
+                          : setQuantityProduct(
+                              (prevQuantity) => prevQuantity - 1,
+                            )
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faMinus} />
+                    </QuantityButton>
+                  </QuantityContainer>
+                </QuantityWrapper>
+              </OptionsContainer>
             )}
-            <button onClick={handleAddNewProduct}>
-              <FontAwesomeIcon icon={faCartShopping} className="shopBtn" />
-              {buttonPressed ? 'Added successfully!' : 'Add to Cart'}
-            </button>
-          </ButtonContainer>
-        </ProductDetails>
-      </ProductContainer>
-      <HomeFooter>
-        <Link href="/about">
-          <FooterItem>
-            <FontAwesomeIcon icon={faUserGroup} />
-            <p>ABOUT US</p>
-          </FooterItem>
-        </Link>
-        <FooterLogos>
-          <FontAwesomeIcon icon={faInstagram} />
-          <FontAwesomeIcon icon={faFacebookSquare} />
-          <FontAwesomeIcon icon={faLinkedinIn} />
-          <FontAwesomeIcon icon={faWhatsapp} />
-        </FooterLogos>
-      </HomeFooter>
-    </Wrapper>
+            <ButtonContainer>
+              {buttonPressed && (
+                <ButtonsPressed>
+                  <Link href="/">
+                    <BackToHome>
+                      <FontAwesomeIcon icon={faAngleLeft} />
+                      <p onClick={() => setButtonPressed(false)}>
+                        Continue Shopping
+                      </p>
+                    </BackToHome>
+                  </Link>
+                  <Link href="/checkout">
+                    <ViewCart>
+                      <p onClick={() => setButtonPressed(false)}>
+                        Go to checkout
+                      </p>
+                      <FontAwesomeIcon icon={faAngleRight} />
+                    </ViewCart>
+                  </Link>
+                </ButtonsPressed>
+              )}
+              <button onClick={handleAddNewProduct}>
+                <FontAwesomeIcon icon={faCartShopping} className="shopBtn" />
+                {buttonPressed ? 'Added successfully!' : 'Add to Cart'}
+              </button>
+            </ButtonContainer>
+          </ProductDetails>
+        </ProductContainer>
+        <HomeFooter>
+          <Link href="/about">
+            <FooterItem>
+              <FontAwesomeIcon icon={faUserGroup} />
+              <p>ABOUT US</p>
+            </FooterItem>
+          </Link>
+          <FooterLogos>
+            <FontAwesomeIcon icon={faInstagram} />
+            <FontAwesomeIcon icon={faFacebookSquare} />
+            <FontAwesomeIcon icon={faLinkedinIn} />
+            <FontAwesomeIcon icon={faWhatsapp} />
+          </FooterLogos>
+        </HomeFooter>
+      </Wrapper>
+    </>
   )
 }
 

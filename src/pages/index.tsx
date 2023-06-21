@@ -26,6 +26,7 @@ import { stripe } from '../lib/stripe'
 import { GetStaticProps } from 'next'
 import Stripe from 'stripe'
 import Link from 'next/link'
+import Head from 'next/head'
 import { faUserGroup } from '@fortawesome/free-solid-svg-icons'
 
 interface HomeProps {
@@ -39,7 +40,6 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
-  console.log(JSON.stringify(products.map((product) => product.imageUrl)))
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const [perView, setPerView] = useState(3)
@@ -80,6 +80,10 @@ export default function Home({ products }: HomeProps) {
 
   return (
     <>
+      <Head>
+        <title>Home | Atomic Shop</title>
+      </Head>
+
       <Container>
         <Wrapper className="navigation-wrapper">
           <HomeContainer ref={sliderRef} className="keen-slider">

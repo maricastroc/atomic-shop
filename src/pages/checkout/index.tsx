@@ -16,6 +16,7 @@ import {
 } from '@/src/styles/pages/checkout'
 import { useContext, useMemo, useState } from 'react'
 import { ShopListContext } from '../contexts/shopList'
+import Head from 'next/head'
 
 export type FormDataType = {
   zip: string
@@ -110,34 +111,39 @@ export default function Checkout() {
   }
 
   return (
-    <CheckoutWrapper>
-      <CheckoutContainer onSubmit={handleSubmit(onSubmit)}>
-        {shopList.length > 0 && (
-          <CheckoutInfoContainer>
-            <Heading>Complete your order</Heading>
-            <FormProvider {...methods}>
-              <AddressForm />
-              <UserDetails onChange={handleReceiveNews} />
-            </FormProvider>
-          </CheckoutInfoContainer>
-        )}
-        <ShopInformationContainer>
-          <ShopInformation />
-        </ShopInformationContainer>
-        {shopList.length > 0 && (
-          <>
-            <ShopInfoTextContainer>
-              <TextContainer>
-                <strong>Total</strong>
-                <strong>{formattedTotal}</strong>
-              </TextContainer>
-            </ShopInfoTextContainer>
-            <ConfirmButton type="submit" disabled={isLoading}>
-              <ConfirmButtonLabel>Confirm delivery</ConfirmButtonLabel>
-            </ConfirmButton>
-          </>
-        )}
-      </CheckoutContainer>
-    </CheckoutWrapper>
+    <>
+      <Head>
+        <title>Checkout | Atomic Shop</title>
+      </Head>
+      <CheckoutWrapper>
+        <CheckoutContainer onSubmit={handleSubmit(onSubmit)}>
+          {shopList.length > 0 && (
+            <CheckoutInfoContainer>
+              <Heading>Complete your order</Heading>
+              <FormProvider {...methods}>
+                <AddressForm />
+                <UserDetails onChange={handleReceiveNews} />
+              </FormProvider>
+            </CheckoutInfoContainer>
+          )}
+          <ShopInformationContainer>
+            <ShopInformation />
+          </ShopInformationContainer>
+          {shopList.length > 0 && (
+            <>
+              <ShopInfoTextContainer>
+                <TextContainer>
+                  <strong>Total</strong>
+                  <strong>{formattedTotal}</strong>
+                </TextContainer>
+              </ShopInfoTextContainer>
+              <ConfirmButton type="submit" disabled={isLoading}>
+                <ConfirmButtonLabel>Confirm delivery</ConfirmButtonLabel>
+              </ConfirmButton>
+            </>
+          )}
+        </CheckoutContainer>
+      </CheckoutWrapper>
+    </>
   )
 }
