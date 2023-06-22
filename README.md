@@ -49,7 +49,33 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
 
 I also developed a custom API to supply Stripe with the necessary purchase information for checkout and dynamically redirect the user to the checkout page upon completing the purchase.
 
-Furthermore, I familiarized myself with the new Image and Link components provided by Next.js, which significantly contribute to the application's performance. I also practiced utilizing hooks like `useDebounce` and `useMemo` to enhance performance. Additionally, I created a custom useLocation hook utilizing the Geolocation API.
+```typescript
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const successUrl = `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`
+  const cancelUrl = process.env.NEXT_URL
+
+  const { lineItems } = req.body
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed.' })
+  }
+
+  if (!lineItems) {
+    return res.status(400).json({ error: 'Item not found.' })
+  }
+
+  const checkoutSession = await stripe.checkout.sessions.create({
+    success_url: successUrl,
+    cancel_url: cancelUrl,
+    mode: 'payment',
+    line_items: lineItems,
+  })
+```
+
+Furthermore, I familiarized myself with the new Image and Link components provided by Next.js, which significantly contribute to the application's performance. I also practiced utilizing hooks like `useDebounce` and `useMemo` to enhance performance. Additionally, I created a custom useLocation hook utilizing the Geolocation API. Finally, I used keen-slider library to craft an interactive carousel that showcases products from the catalog.
 
 ## 🔍 Links
 [Preview Site](https://maricastroc-atomic-shop.netlify.app/)
